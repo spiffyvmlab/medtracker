@@ -8,6 +8,15 @@ document.addEventListener("DOMContentLoaded", function() {
         .server-time { color: #aaa; }
         .toggle-btn { background: #333; color: #eee; }
         tr { border-bottom: 2px solid #222; }
+        input, select, textarea {
+            background: #222;
+            color: #eee;
+            border: 1px solid #444;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #8cf;
+            background: #181818;
+        }
     `;
     const lightCSS = `
         body { background: #fff; color: #222; }
