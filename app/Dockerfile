@@ -30,6 +30,7 @@ RUN pip install --upgrade pip \
 
 # Copy only the app code (not the whole context)
 COPY app.py .
+COPY static/theme.* ./static/
 
 # Use non-root user (optional)
 USER flaskuser
