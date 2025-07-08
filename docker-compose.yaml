@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  web:
+    #build: ./app
+    image: harbor.spiffyvmlab.com/library/medtracker:amd64-latest
+    pull_policy: always
+    restart: always
+    container_name: med_tracker_web
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    container_name: med_tracker_db
+    environment:
+      POSTGRES_USER: meduser
+      POSTGRES_PASSWORD: medpass
+      POSTGRES_DB: medtracker
+    volumes:
+      - med_tracker_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meduser -d medtracker"]
+      interval: 5s
+      timeout: 5s
+      retries: 5  
+
+volumes:
+  med_tracker_db_data:
