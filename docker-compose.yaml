@@ -3,7 +3,7 @@ version: '3.9'
 services:
   app:
     #build: ./app
-    image: harbor.spiffyvmlab.com/library/medtracker:amd64-latest
+    image: medtracker:latest
     container_name: med_tracker_app
     pull_policy: always
     restart: unless-stopped
